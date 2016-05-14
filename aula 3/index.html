@@ -57,19 +57,14 @@
                 <div class="col-md-4">
                     <div class="form-group form-group-defaut">
                         <label for="">Nome do Aluno</label>
-                        <input class="form-control" id="nome_aluno" type="text" name="nome_aluno" ng-model="nome_aluno"></input>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group form-group-defaut">
-                        <label for="">Nome do Aluno 2</label>
-                        <input class="form-control" id="nome_aluno" type="text" name="nome_aluno" ng-model="nome_aluno"></input>
+                        <input class="form-control" id="nome_aluno" type="text" name="nome_aluno" ng-model="nome_aluno" ng-readonly="!iniciado">
+                        </input>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-4">
-                    <button class="btn btn-primary" ng-click="submeter()">
+                    <button class="btn btn-primary" ng-click="submeter()" ng-disabled="!iniciado">
                         Adicionar
                     </button>
                 </div>
