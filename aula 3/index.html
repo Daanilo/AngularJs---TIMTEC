@@ -26,18 +26,34 @@
             <!-- ngIf: !iniciado -->
             <p class="ng-scope" ng-if="!iniciado">Aguarde o próximo curso!</p>
             <!-- end ngIf: !iniciado -->
+            <p> Valor do Curso: {{valor | currency:'R$ '}}</p>
+            <p>Ultima atualização: {{hoje | date: 'dd/MM/yyyy'}}</p>
         </div>
 	    </div>
-     
+        <div class="row">
+            <div class="col-md-4" class="form-group form-group-defaut">
+                <label class="label label-info" for="">Indicar valor ao curso</label>
+                <input class="form-control" type="number" name="valor" id="valor" ng-model="valor">
+            </div>
+        </div><hr>
+        <div class="row">
+             <div class="col-md-4" class="form-group form-group-defaut">
+                <label class="label label-primary" for="">Filtrar por nome</label>
+                <input class="form-control" type="text" name="filtro" id="filtro" ng-model="filtro">
+             </div>
+        </div>
         <table class="table table-hover">
             <thead>
             <tr>
-                <th>Nome do Aluno</th>
+                <th ng-click="ordenarPorNome">Nome do Aluno</th>
+                <th ng-click="ordenarPorIdade">Idade</th>
             </tr>
+
             </thead>
-            <tbody ng-repeat="aluno in alunos">
+            <tbody ng-repeat="aluno in alunos | filter: filtro">
             <tr >
-                <td>{{aluno}}</td>
+                <td>{{aluno.nome}}</td>
+                <td>{{aluno.idade}}</td>
             </tr>
             </tbody>
         </table>
@@ -57,7 +73,15 @@
                 <div class="col-md-4">
                     <div class="form-group form-group-defaut">
                         <label for="">Nome do Aluno</label>
-                        <input class="form-control" id="nome_aluno" type="text" name="nome_aluno" ng-model="nome_aluno" ng-readonly="!iniciado">
+                        <input class="form-control" placeholder="No mínimo 3 caracteres" id="nome_aluno" type="text" name="nome_aluno" ng-model="nome_aluno" required ng-readonly="!iniciado" ng-minlength="3">
+                        </input>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group form-group-defaut">
+                        <label for="">Idade</label>
+                        <input class="form-control"  placeholder="idade do aluno" id="idade_aluno" type="number" name="idade_aluno" 
+                        ng-model="idade_aluno" required ng-readonly="!iniciado">
                         </input>
                     </div>
                 </div>
